@@ -1,26 +1,104 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: oklch(0.96 0.01 80);
+  --foreground: oklch(0.15 0.01 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.01 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.01 260);
+  --primary: oklch(0.7 0.18 55); /* AWS Orange */
+  --primary-foreground: oklch(0.15 0 0);
+  --secondary: oklch(0.95 0.01 80);
+  --secondary-foreground: oklch(0.2 0 0);
+  --muted: oklch(0.94 0.01 80);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: oklch(0.55 0.18 200);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.88 0.01 80);
+  --input: oklch(0.95 0.01 80);
+  --ring: oklch(0.7 0.18 55);
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: oklch(0.13 0.02 250);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.16 0.02 250);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.14 0.02 250);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.7 0.15 200);
+  --primary-foreground: oklch(0.1 0 0);
+  --secondary: oklch(0.2 0.02 250);
+  --secondary-foreground: oklch(0.9 0 0);
+  --muted: oklch(0.2 0.02 250);
+  --muted-foreground: oklch(0.6 0 0);
+  --accent: oklch(0.7 0.15 200);
+  --accent-foreground: oklch(0.1 0 0);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.25 0.02 250);
+  --input: oklch(0.18 0.02 250);
+  --ring: oklch(0.7 0.15 200);
 }
 
 @theme inline {
+  --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
+  --font-mono: var(--font-source-code-pro), 'Source Code Pro', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* AWS Patterns */
+.bg-pattern-cube {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23000' stroke-opacity='0.03' stroke-width='1'%3E%3Cpath d='M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z'/%3E%3Cpath d='M50 10 L50 50 M90 30 L50 50 M10 30 L50 50'/%3E%3Cpath d='M50 50 L50 90 M50 50 L90 70 M50 50 L10 70'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 80px 80px;
+}
+
+.dark .bg-pattern-cube {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23fff' stroke-opacity='0.02' stroke-width='1'%3E%3Cpath d='M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z'/%3E%3Cpath d='M50 10 L50 50 M90 30 L50 50 M10 30 L50 50'/%3E%3Cpath d='M50 50 L50 90 M50 50 L90 70 M50 50 L10 70'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* AWS Console Cards */
+.console-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.dark .console-card {
+  box-shadow: none;
 }
