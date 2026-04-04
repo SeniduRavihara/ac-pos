@@ -78,59 +78,13 @@ export class ProductService {
   }
 
   /**
-   * Listen to real-time updates for products (Hardcoded fallback)
+   * Listen to real-time updates for products
    */
   static listenToProducts(callback: (products: Product[]) => void) {
-    const mockProducts: Product[] = [
-      {
-        id: "prod-1",
-        brandId: "brand-1",
-        brandName: "Panasonic",
-        modelNumber: "PAN-INV-1.5",
-        btu: 18000,
-        type: "Split",
-        inverter: "Inverter",
-        price: 145000,
-        stock: 12,
-        serialNumbers: ["SN-1001", "SN-1002"],
-        createdAt: Date.now()
-      },
-      {
-        id: "prod-2",
-        brandId: "brand-2",
-        brandName: "Daikin",
-        modelNumber: "DAI-STD-1.0",
-        btu: 12000,
-        type: "Split",
-        inverter: "Non-Inverter",
-        price: 95000,
-        stock: 3,
-        serialNumbers: ["SN-2001"],
-        createdAt: Date.now()
-      },
-      {
-        id: "prod-3",
-        brandId: "brand-3",
-        brandName: "Mitsubishi",
-        modelNumber: "MIT-INV-2.0",
-        btu: 24000,
-        type: "Cassette",
-        inverter: "Inverter",
-        price: 210000,
-        stock: 8,
-        serialNumbers: ["SN-3001", "SN-3002"],
-        createdAt: Date.now()
-      }
-    ];
-
-    callback(mockProducts);
-    
     const q = query(collection(db, this.COLLECTION), orderBy("createdAt", "desc"));
     return onSnapshot(q, (snapshot) => {
-      if (!snapshot.empty) {
-        const products = snapshot.docs.map(doc => doc.data() as Product);
-        callback(products);
-      }
+      const products = snapshot.docs.map(doc => doc.data() as Product);
+      callback(products);
     });
   }
 }

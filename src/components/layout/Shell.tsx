@@ -24,6 +24,7 @@ import {
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
+import { useAuth } from "@/context/AuthContext";
 
 const navItems = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
@@ -37,6 +38,7 @@ const navItems = [
 export function Shell({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const { theme, setTheme } = useTheme();
+  const { user, logout } = useAuth();
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
 
@@ -108,7 +110,10 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
         {/* Footer */}
         <div className="p-2 border-t border-[#24292e]">
-          <button className="flex items-center w-full px-3 py-2 rounded text-slate-400 hover:bg-[#24292e] hover:text-white transition-colors">
+          <button 
+            onClick={logout}
+            className="flex items-center w-full px-3 py-2 rounded text-slate-400 hover:bg-[#24292e] hover:text-white transition-colors"
+          >
             <LogOut className="w-4.5 h-4.5" />
             {isSidebarOpen && <span className="ml-3 text-xs font-medium">Logout</span>}
           </button>
@@ -157,8 +162,12 @@ export function Shell({ children }: { children: React.ReactNode }) {
              </button>
              <div className="h-6 w-[1px] bg-[#24292e] mx-2" />
              <div className="flex items-center gap-2 bg-[#24292e] hover:bg-[#3b4149] cursor-pointer px-3 py-1.5 rounded-md transition-colors border border-transparent hover:border-[#ff9900]/30 group">
-               <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-[10px] font-black group-hover:bg-[#ff9900] transition-colors">AD</div>
-               <span className="text-[11px] font-bold text-slate-300 group-hover:text-white">Admin@CoolFlow</span>
+               <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-[10px] font-black group-hover:bg-[#ff9900] transition-colors">
+                 {user?.displayName?.charAt(0) || user?.email?.charAt(0).toUpperCase() || "A"}
+               </div>
+               <span className="text-[11px] font-bold text-slate-300 group-hover:text-white">
+                 {user?.displayName || user?.email?.split('@')[0] || "Admin"}
+               </span>
                <ChevronRight className="w-3 h-3 text-slate-500 rotate-90" />
              </div>
           </div>

@@ -56,44 +56,13 @@ export class CustomerService {
   }
 
   /**
-   * Listen to real-time updates for customers (Hardcoded fallback)
+   * Listen to real-time updates for customers
    */
   static listenToCustomers(callback: (customers: Customer[]) => void) {
-    const mockCustomers: Customer[] = [
-      {
-        id: "cust-1",
-        name: "John Doe",
-        phone: "0771234567",
-        email: "john@example.com",
-        address: "123, Galle Road, Colombo 03",
-        createdAt: Date.now()
-      },
-      {
-        id: "cust-2",
-        name: "Global Tech Solutions",
-        phone: "0112345678",
-        email: "contact@globaltech.lk",
-        address: "No 45, Highlevel Road, Nugegoda",
-        createdAt: Date.now()
-      },
-      {
-        id: "cust-3",
-        name: "Sarah Wijesinghe",
-        phone: "0719876543",
-        email: "sarah@gmail.com",
-        address: "56/A, Kandy Road, Kiribathgoda",
-        createdAt: Date.now()
-      }
-    ];
-
-    callback(mockCustomers);
-
     const q = query(collection(db, this.COLLECTION), orderBy("name", "asc"));
     return onSnapshot(q, (snapshot) => {
-      if (!snapshot.empty) {
-        const customers = snapshot.docs.map(doc => doc.data() as Customer);
-        callback(customers);
-      }
+      const customers = snapshot.docs.map(doc => doc.data() as Customer);
+      callback(customers);
     });
   }
 }

@@ -55,13 +55,6 @@ export default function DashboardPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <button 
-            onClick={handleSeed}
-            disabled={isSeeding}
-            className="px-3 py-1.5 text-xs font-bold border border-border bg-card hover:bg-muted transition-colors rounded disabled:opacity-50"
-          >
-             {isSeeding ? "Provisioning..." : "Seed Mock Data"}
-          </button>
           <button className="px-3 py-1.5 text-xs font-bold border border-border bg-card hover:bg-muted transition-colors rounded">
              Refresh
           </button>

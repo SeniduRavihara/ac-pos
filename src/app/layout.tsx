@@ -1,8 +1,8 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Inter, Source_Code_Pro } from "next/font/google";
 import "./globals.css";
-import { Shell } from "@/components/layout/Shell";
-import { ThemeProvider } from "@/components/theme-provider";
+import { Providers } from "@/components/Providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,8 +15,8 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "CoolFlow POS | AWS Management Console Style",
-  description: "Modern Point of Sale and Inventory Management for AC Companies",
+  title: "CoolFlow Cloud Console",
+  description: "Enterprise AC POS & Inventory Management",
 };
 
 export default function RootLayout({
@@ -27,14 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${sourceCodePro.variable} h-full antialiased`}>
       <body className="min-h-full font-sans bg-background text-foreground transition-colors duration-300">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Shell>{children}</Shell>
-        </ThemeProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
