@@ -69,7 +69,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
                 exit={{ opacity: 0, x: -10 }}
                 className="ml-3 font-semibold text-sm tracking-tight whitespace-nowrap overflow-hidden"
               >
-                CoolFlow Cloud
+                CoolFlow POS
               </motion.span>
             )}
           </AnimatePresence>
@@ -130,19 +130,19 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        {/* AWS Fixed Header */}
+        {/* Header */}
         <header className="h-14 flex items-center justify-between px-4 bg-[#15191d] border-b border-[#24292e] text-white z-40 shrink-0">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2 cursor-pointer hover:text-[#ff9900] transition-colors">
               <Menu className="w-5 h-5 text-slate-400" />
-              <span className="text-sm font-bold tracking-tight">Services</span>
+              <span className="text-sm font-bold tracking-tight">Navigation</span>
             </div>
             {/* Search Bar Placeholder */}
             <div className="hidden lg:flex items-center bg-[#24292e] rounded-md border border-[#3b4149] px-3 py-1.5 w-80">
               <Search className="w-4 h-4 text-slate-500 mr-2" />
               <input 
                 type="text" 
-                placeholder="Search resources, docs (Alt+S)"
+                placeholder="Search items, customers, or services..."
                 className="bg-transparent border-none text-[11px] outline-none text-slate-300 w-full"
               />
             </div>

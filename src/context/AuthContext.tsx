@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { auth, googleProvider } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
+import { UserService } from "@/services/firebase/UserService";
 
 interface AuthContextType {
   user: User | null;
@@ -32,7 +33,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        try {
+          await UserService.syncUser(user);
+        } catch (error) {
+          console.error("User Sync Error:", error);
+        }
+      }
       setUser(user);
       setLoading(false);
     });

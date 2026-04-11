@@ -46,14 +46,14 @@ export default function CustomersPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
            <div className="flex items-center gap-2 text-[11px] font-bold text-muted-foreground uppercase tracking-widest mb-1">
-             <ShieldCheck className="w-3.5 h-3.5" /> Identity & Access Management
+             <ShieldCheck className="w-3.5 h-3.5" /> Customer Relations Management
            </div>
           <h1 className="text-2xl font-black tracking-tight text-foreground">
-            Customer Identities
+            Customer Directory
           </h1>
         </div>
         <button className="px-4 py-1.5 text-xs font-bold bg-[#ff9900] text-[#15191d] rounded hover:bg-[#ec7211] transition-all flex items-center gap-2 shadow-md">
-          <UserPlus className="w-4 h-4" /> Create Customer Record
+          <UserPlus className="w-4 h-4" /> Register New Customer
         </button>
       </div>
 
@@ -64,12 +64,12 @@ export default function CustomersPage() {
          </div>
          <div className="flex-1 grid grid-cols-2 sm:grid-cols-4 gap-4 divide-x divide-border">
             <div className="flex flex-col px-4 first:pl-0">
-               <span className="text-[10px] font-bold text-muted-foreground uppercase">Active Users</span>
+               <span className="text-[10px] font-bold text-muted-foreground uppercase">Active Customers</span>
                <span className="text-lg font-black">{customers.length}</span>
             </div>
             <div className="flex flex-col px-4">
-               <span className="text-[10px] font-bold text-muted-foreground uppercase">Managed Roles</span>
-               <span className="text-lg font-black text-[#ff9900]">Customer</span>
+               <span className="text-[10px] font-bold text-muted-foreground uppercase">Account Type</span>
+               <span className="text-lg font-black text-[#ff9900]">Individual</span>
             </div>
          </div>
       </div>
@@ -80,7 +80,7 @@ export default function CustomersPage() {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
             <input 
               type="text" 
-              placeholder="Filter by name, phone hash, or ARN..."
+              placeholder="Filter by name, phone, or customer ID..."
               className="w-full pl-9 pr-4 py-1.5 bg-background border border-border rounded text-xs focus:ring-1 focus:ring-[#ff9900/50] outline-none"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -96,7 +96,7 @@ export default function CustomersPage() {
           ) : filteredCustomers.length === 0 ? (
             <div className="col-span-full py-20 text-center opacity-50 bg-muted/20 border-2 border-dashed border-border rounded">
                <Users className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-               <p className="text-xs font-black uppercase tracking-widest text-foreground">No customer resources found</p>
+               <p className="text-xs font-black uppercase tracking-widest text-foreground">No customers found</p>
             </div>
           ) : (
             filteredCustomers.map((c, index) => (
@@ -122,7 +122,7 @@ export default function CustomersPage() {
                   <h3 className="text-sm font-black text-foreground mb-1 flex items-center gap-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors cursor-pointer">
                     {c.name} <ChevronRight className="w-3 h-3 rotate-[-45deg] opacity-0 group-hover:opacity-100 transition-all font-black text-[#ff9900]" />
                   </h3>
-                  <p className="text-[10px] font-mono text-muted-foreground mb-4">arn:lk:acpos:user:{c.id.substring(0, 12)}</p>
+                  <p className="text-[10px] font-mono text-muted-foreground mb-4">id:cus-{c.id.substring(0, 12)}</p>
                   
                   <div className="space-y-2">
                     <div className="flex items-center gap-3 text-muted-foreground">

@@ -103,7 +103,7 @@ export default function MaintenancePage() {
             ) : records.length === 0 ? (
               <div className="py-24 text-center opacity-40">
                  <Wrench className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-                 <p className="text-[11px] font-black uppercase tracking-[0.2em]">No scheduled maintenance resources found</p>
+                 <p className="text-[11px] font-black uppercase tracking-[0.2em]">No scheduled service tasks found</p>
               </div>
             ) : (
               records.map((r, index) => (
@@ -120,32 +120,32 @@ export default function MaintenancePage() {
                       <span className="text-[9px] uppercase font-bold tracking-tighter opacity-60 font-mono mb-0.5">{new Date(r.nextServiceDate).toLocaleDateString(undefined, { month: 'short' })}</span>
                       <span className="text-xl leading-none">{new Date(r.nextServiceDate).getDate()}</span>
                     </div>
-                    <div className="min-w-0">
-                      <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest leading-none mb-1">Evt ID</p>
-                      <p className="text-[11px] font-mono font-bold text-foreground">maint-{r.id.substring(0, 8)}</p>
+                     <div className="min-w-0">
+                      <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest leading-none mb-1">Ref ID</p>
+                      <p className="text-[11px] font-mono font-bold text-foreground">mnt-{r.id.substring(0, 8)}</p>
                     </div>
                   </div>
 
                   {/* Resource Identity */}
                   <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded border border-border bg-muted/20 flex items-center justify-center shrink-0">
+                       <div className="w-8 h-8 rounded border border-border bg-muted/20 flex items-center justify-center shrink-0">
                         <User className="w-4 h-4 text-muted-foreground" />
                       </div>
                       <div>
-                        <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest leading-none mb-1">Beneficiary</p>
+                        <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest leading-none mb-1">Customer</p>
                         <p className="text-xs font-bold text-foreground hover:text-[#3b82f6] cursor-pointer inline-flex items-center gap-1 group">
                           {r.customerName} <ExternalLink className="w-2.5 h-2.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                         </p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded border border-border bg-muted/20 flex items-center justify-center shrink-0">
+                       <div className="w-8 h-8 rounded border border-border bg-muted/20 flex items-center justify-center shrink-0">
                         <Package className="w-4 h-4 text-muted-foreground" />
                       </div>
                       <div>
-                        <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest leading-none mb-1">Target Resource</p>
-                        <p className="text-xs font-mono font-bold text-foreground">lk-sn-{r.serialNumber.substring(0, 10)}</p>
+                        <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest leading-none mb-1">Unit Serial</p>
+                        <p className="text-xs font-mono font-bold text-foreground">sn-{r.serialNumber.substring(0, 10)}</p>
                       </div>
                     </div>
                   </div>
@@ -158,9 +158,9 @@ export default function MaintenancePage() {
                     )}>
                       {r.status}
                     </span>
-                    <div className="flex items-center gap-2">
+                     <div className="flex items-center gap-2">
                       <button className="p-2 bg-[#10b981]/10 text-[#10b981] hover:bg-[#10b981] hover:text-white rounded border border-[#10b981]/30 transition-all font-black text-[10px] flex items-center gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5" /> COMMIT
+                        <CheckCircle2 className="w-3.5 h-3.5" /> COMPLETE
                       </button>
                       <button className="p-2 hover:bg-muted rounded border border-border"><MoreVertical className="w-4 h-4 text-muted-foreground" /></button>
                     </div>

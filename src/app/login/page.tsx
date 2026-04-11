@@ -49,15 +49,15 @@ export default function LoginPage() {
           <div className="w-14 h-14 rounded-xl bg-[#ff9900] flex items-center justify-center text-[#15191d] mb-4 shadow-xl shadow-black/40">
             <Cpu className="w-8 h-8 fill-current" />
           </div>
-          <h1 className="text-2xl font-black tracking-tight">Cloud Management Console</h1>
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mt-1 italic">Authorized Personal Only</p>
+          <h1 className="text-2xl font-black tracking-tight">POS Management Console</h1>
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mt-1 italic">Authorized Personnel Only</p>
         </div>
 
         {/* Login Card */}
         <div className="console-card bg-white p-8 rounded shadow-2xl space-y-6">
           <div className="space-y-1">
              <h2 className="text-xl font-black text-slate-900">Sign in</h2>
-             <p className="text-xs text-slate-500">Access CoolFlow cloud services for lk-west-1</p>
+             <p className="text-xs text-slate-500">Access CoolFlow POS services for Colombo Main</p>
           </div>
 
           <form onSubmit={handleEmailLogin} className="space-y-4">
@@ -79,7 +79,7 @@ export default function LoginPage() {
              <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Password</label>
-                   <button type="button" className="text-[10px] font-bold text-[#0073bb] hover:underline">Forgot IAM password?</button>
+                   <button type="button" className="text-[10px] font-bold text-[#0073bb] hover:underline">Forgot password?</button>
                 </div>
                 <div className="relative group">
                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-[#ff9900] transition-colors" />
@@ -135,7 +135,7 @@ export default function LoginPage() {
         </div>
 
         <div className="mt-8 text-center text-[10px] font-bold text-slate-500">
-           © 2026 CoolFlow Sri Lanka Cloud Infrastructure. <br/>All Rights Reserved.
+           © 2026 CoolFlow Sri Lanka POS Systems. <br/>All Rights Reserved.
         </div>
       </motion.div>
     </div>

@@ -50,7 +50,7 @@ export default function InventoryPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
            <div className="flex items-center gap-2 text-[11px] font-bold text-muted-foreground uppercase tracking-widest mb-1">
-             <Database className="w-3.5 h-3.5" /> Inventory Resources
+             <Database className="w-3.5 h-3.5" /> Product Inventory
            </div>
           <h1 className="text-2xl font-black tracking-tight text-foreground">
             Stock Management
@@ -65,7 +65,7 @@ export default function InventoryPage() {
              Settings
           </button>
           <button className="px-4 py-1.5 text-xs font-bold bg-[#ff9900] text-[#15191d] rounded hover:bg-[#ec7211] transition-all flex items-center gap-2 shadow-md">
-            Create Product
+            Add New Product
           </button>
         </div>
       </div>
@@ -97,7 +97,7 @@ export default function InventoryPage() {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
             <input 
               type="text" 
-              placeholder="Find by product ID, model, or brand..."
+              placeholder="Find by product SKU, model, or brand..."
               className="w-full pl-9 pr-4 py-1.5 bg-background border border-border rounded text-xs focus:ring-1 focus:ring-[#ff9900/50] outline-none"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -119,7 +119,7 @@ export default function InventoryPage() {
             <thead className="sticky top-0 bg-muted/90 backdrop-blur-sm z-10 border-b border-border shadow-sm">
               <tr>
                 <th className="w-10 px-4 py-3"><input type="checkbox" className="rounded border-border" /></th>
-                <th className="w-[30%] px-4 py-3 text-[10px] font-black text-muted-foreground uppercase tracking-widest">Model & Resource ID</th>
+                <th className="w-[30%] px-4 py-3 text-[10px] font-black text-muted-foreground uppercase tracking-widest">Model & SKU</th>
                 <th className="px-4 py-3 text-[10px] font-black text-muted-foreground uppercase tracking-widest">Specification</th>
                 <th className="px-4 py-3 text-[10px] font-black text-muted-foreground uppercase tracking-widest">Inventory State</th>
                 <th className="px-4 py-3 text-[10px] font-black text-muted-foreground uppercase tracking-widest text-right">Unit Price</th>
@@ -136,7 +136,7 @@ export default function InventoryPage() {
               ) : filteredProducts.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="px-4 py-20 text-center text-xs font-bold text-muted-foreground bg-muted/20">
-                    No resources found matching the specified pattern.
+                    No products found matching the specified pattern.
                   </td>
                 </tr>
               ) : (
@@ -153,7 +153,7 @@ export default function InventoryPage() {
                              {p.modelNumber} <ExternalLink className="w-2.5 h-2.5 opacity-0 group-hover:opacity-100" />
                           </p>
                           <p className="text-[10px] text-muted-foreground font-mono flex items-center gap-1">
-                             <ChevronRight className="w-2 h-2" /> {p.id.substring(0, 12)}
+                             <ChevronRight className="w-2 h-2" /> SKU: {p.id.substring(0, 12)}
                           </p>
                         </div>
                       </div>
@@ -208,7 +208,7 @@ export default function InventoryPage() {
         <div className="px-4 py-2 border-t border-border bg-muted/20 flex items-center justify-between text-[11px] font-bold text-muted-foreground">
            <span>Items per page: 50</span>
            <div className="flex items-center gap-4">
-              <span>Displaying 1-{filteredProducts.length} of {products.length} resources</span>
+              <span>Displaying 1-{filteredProducts.length} of {products.length} products</span>
               <div className="flex gap-1">
                  <button className="p-1 hover:bg-muted rounded border border-border opacity-50"><ChevronRight className="w-4 h-4 rotate-180" /></button>
                  <button className="p-1 hover:bg-muted rounded border border-border"><ChevronRight className="w-4 h-4" /></button>

@@ -40,7 +40,7 @@ export default function SettingsPage() {
        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
            <div className="flex items-center gap-2 text-[11px] font-bold text-muted-foreground uppercase tracking-widest mb-1">
-             <SettingsIcon className="w-3.5 h-3.5" /> IAM Settings
+             <SettingsIcon className="w-3.5 h-3.5" /> User Access Control
            </div>
           <h1 className="text-2xl font-black tracking-tight text-foreground">
             Account Management
@@ -85,7 +85,7 @@ export default function SettingsPage() {
                 <div className="space-y-6">
                    <div className="console-card">
                       <div className="px-6 py-4 bg-muted/30 border-b border-border">
-                         <h3 className="text-sm font-bold tracking-tight">Identity Overview</h3>
+                         <h3 className="text-sm font-bold tracking-tight">Account Overview</h3>
                       </div>
                       <div className="p-8 space-y-8">
                          <div className="flex items-center gap-6">
@@ -95,10 +95,10 @@ export default function SettingsPage() {
                             <div className="space-y-1">
                                <h4 className="text-xl font-black">{user?.displayName || "System Administrator"}</h4>
                                <p className="text-xs text-muted-foreground font-mono leading-none flex items-center gap-2">
-                                  arn:lk:acpos:iam::{user?.uid?.substring(0, 12)} <ExternalLink className="w-3 h-3" />
+                                  uid:lk:acpos:usr::{user?.uid?.substring(0, 12)} <ExternalLink className="w-3 h-3" />
                                </p>
                                <div className="pt-2">
-                                  <span className="px-2 py-0.5 rounded-sm bg-emerald-500/10 text-emerald-500 text-[9px] font-black uppercase tracking-widest border border-emerald-500/20">Verified Root User</span>
+                                  <span className="px-2 py-0.5 rounded-sm bg-emerald-500/10 text-emerald-500 text-[9px] font-black uppercase tracking-widest border border-emerald-500/20">Verified Administrator</span>
                                </div>
                             </div>
                          </div>
@@ -124,12 +124,12 @@ export default function SettingsPage() {
                       <div className="flex items-start gap-4">
                          <Shield className="w-5 h-5 text-[#ff9900] mt-0.5" />
                          <div className="space-y-1">
-                            <h4 className="text-sm font-black">Security Compliance</h4>
+                            <h4 className="text-sm font-black">Access Security</h4>
                             <p className="text-xs text-muted-foreground leading-relaxed">
                                Your account is currently protected by enterprise-grade security protocols. 
-                               Access attempts from unrecognized regions (lk-west-1a) will be logged and flagged.
+                               Access attempts from unrecognized locations (Colombo Main) will be logged and flagged.
                             </p>
-                            <button className="text-[10px] font-black text-[#3b82f6] uppercase tracking-widest hover:underline mt-2">Manage Multi-Factor Auth</button>
+                            <button className="text-[10px] font-black text-[#3b82f6] uppercase tracking-widest hover:underline mt-2">Manage Access Security</button>
                          </div>
                       </div>
                    </div>
@@ -145,9 +145,9 @@ export default function SettingsPage() {
                       <div className="p-8">
                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             {[
-                              { name: "Light", icon: Sun, id: "light", desc: "Warm AWS Login-inspired beige" },
-                              { name: "Dark", icon: Moon, id: "dark", desc: "Deep AWS Console-inspired navy" },
-                              { name: "System", icon: Monitor, id: "system", desc: "Sync with your OS resources" }
+                              { name: "Light", icon: Sun, id: "light", desc: "Warm CoolFlow-inspired beige" },
+                              { name: "Dark", icon: Moon, id: "dark", desc: "Deep CoolFlow Console-inspired navy" },
+                              { name: "System", icon: Monitor, id: "system", desc: "Sync with your system resources" }
                             ].map((mode) => (
                               <button
                                 key={mode.id}
@@ -177,9 +177,9 @@ export default function SettingsPage() {
 
             <div className="console-card p-6 bg-muted/10 opacity-70 cursor-not-allowed">
                <h3 className="text-xs font-black uppercase tracking-widest mb-2 flex items-center gap-2">
-                  <Database className="w-4 h-4" /> Global Instance Settings
+                  <Database className="w-4 h-4" /> Branch Configuration
                </h3>
-               <p className="text-[10px] italic">Access to regional configuration (lk-west-1) is managed by the root organization.</p>
+               <p className="text-[10px] italic">Access to branch configuration (Colombo Main) is managed by the root organization.</p>
             </div>
          </div>
       </div>

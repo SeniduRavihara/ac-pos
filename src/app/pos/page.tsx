@@ -97,13 +97,13 @@ export default function POSPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
            <div>
               <h1 className="text-2xl font-black tracking-tight text-foreground">Point of Sale</h1>
-              <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">lk-west-1a-az1 • Active Session</p>
+              <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">Colombo-Main-Branch • Active Session</p>
            </div>
            <div className="relative w-full sm:w-80">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
               <input 
                 type="text" 
-                placeholder="Find resources by pattern..."
+                placeholder="Find items by name or SKU..."
                 className="w-full pl-9 pr-4 py-2 bg-background border border-border rounded text-xs focus:ring-1 focus:ring-[#ff9900]/50 outline-none"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -142,7 +142,7 @@ export default function POSPage() {
                      <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                         <div className="h-full bg-blue-600 transition-all duration-500" style={{ width: `${Math.min(100, (p.stock / 20) * 100)}%` }} />
                      </div>
-                     <span className="text-[10px] font-black text-[#ff9900/80] opacity-0 group-hover:opacity-100 transition-opacity uppercase">Provision Product</span>
+                     <span className="text-[10px] font-black text-[#ff9900/80] opacity-0 group-hover:opacity-100 transition-opacity uppercase">Add to Bill</span>
                   </div>
                 </motion.div>
               ))}
@@ -157,7 +157,7 @@ export default function POSPage() {
            {/* Header */}
            <div className="px-6 py-4 bg-muted/40 border-b border-border flex items-center justify-between">
               <h3 className="text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2">
-                <ShoppingCart className="w-4 h-4 text-[#ff9900]" /> Resource Provisioning
+                <ShoppingCart className="w-4 h-4 text-[#ff9900]" /> Transaction Summary
               </h3>
               <div className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
            </div>
@@ -169,8 +169,8 @@ export default function POSPage() {
                    <div className="w-16 h-16 border-2 border-dashed border-muted-foreground/30 rounded-full flex items-center justify-center mb-4">
                       <ShoppingCart className="w-8 h-8 text-muted-foreground" />
                    </div>
-                   <p className="text-[11px] font-black uppercase tracking-widest leading-none mb-2 text-foreground">Empty Resource Collection</p>
-                   <p className="text-[10px] text-muted-foreground tracking-tighter">Select a provisionable resource from the navigator</p>
+                   <p className="text-[11px] font-black uppercase tracking-widest leading-none mb-2 text-foreground">Empty Transaction</p>
+                   <p className="text-[10px] text-muted-foreground tracking-tighter">Select a product from the navigator to begin billing</p>
                 </div>
               ) : (
                 cart.map((item, index) => (
@@ -183,7 +183,7 @@ export default function POSPage() {
                      <div className="flex items-center justify-between">
                         <div className="min-w-0">
                            <p className="text-xs font-black text-[#3b82f6] truncate group-hover:text-foreground transition-colors">{item.modelNumber}</p>
-                           <p className="text-[10px] font-mono text-muted-foreground">inst-{item.id.substring(0, 8)}</p>
+                           <p className="text-[10px] font-mono text-muted-foreground">sku-{item.id.substring(0, 8)}</p>
                         </div>
                         <p className="text-xs font-black">Rs. {item.price.toLocaleString()}</p>
                      </div>
@@ -200,9 +200,9 @@ export default function POSPage() {
 
            {/* Totals & Provisioning Action */}
            <div className="p-6 bg-muted/30 border-t border-border space-y-6">
-              {/* Target Instance (Customer) */}
+              {/* Customer Assignment */}
               <div className="space-y-2">
-                 <label className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Target Resource Destination</label>
+                 <label className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Customer Assignment</label>
                  <div className="relative group">
                     <div className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground group-focus-within:text-[#ff9900]">
                        <User className="w-full h-full" />
@@ -212,9 +212,9 @@ export default function POSPage() {
                       value={selectedCustomerId}
                       onChange={(e) => setSelectedCustomerId(e.target.value)}
                     >
-                       <option value="">Select Target Destination...</option>
+                       <option value="">Select Customer...</option>
                        {customers.map(c => (
-                         <option key={c.id} value={c.id}>{c.name} [lk-u-{c.id.substring(0, 8)}]</option>
+                         <option key={c.id} value={c.id}>{c.name} [cus-{c.id.substring(0, 8)}]</option>
                        ))}
                     </select>
                     <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
@@ -223,7 +223,7 @@ export default function POSPage() {
 
               {/* Protocol Method */}
               <div className="space-y-2">
-                 <label className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Transaction Protocol</label>
+                 <label className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Payment Method</label>
                  <div className="grid grid-cols-3 gap-1">
                    {[
                      { id: "Cash", icon: Banknote },
@@ -249,7 +249,7 @@ export default function POSPage() {
               {/* Final Summary */}
               <div className="space-y-4 pt-4 border-t border-border/50">
                  <div className="flex justify-between items-center text-[10px] font-bold text-muted-foreground uppercase tracking-widest opacity-80">
-                    <span>Provisioning Quota</span>
+                    <span>Subtotal Quota</span>
                     <span>Rs. {total.toLocaleString()}</span>
                  </div>
                  <div className="flex justify-between items-center">
@@ -260,7 +260,7 @@ export default function POSPage() {
                  <div className="flex items-start gap-2 bg-blue-600/10 p-2 rounded border border-blue-600/30 mb-2">
                     <Info className="w-3.5 h-3.5 text-[#3b82f6] shrink-0 mt-0.5" />
                     <p className="text-[9px] text-[#3b82f6] font-bold leading-normal">
-                      Confirming this transaction will decrease inventory resources and create a cloud-billing invoice for the destination resource.
+                      Confirming this transaction will decrease stock levels and generate a retail invoice for the selected customer.
                     </p>
                  </div>
 
@@ -276,7 +276,7 @@ export default function POSPage() {
                   >
                     {isProcessing ? "INITIALIZING..." : (
                       <>
-                        Commit Transaction <ArrowRight className="w-4 h-4 ml-1" />
+                        Complete Transaction <ArrowRight className="w-4 h-4 ml-1" />
                       </>
                     )}
                  </button>

@@ -15,8 +15,8 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "CoolFlow Cloud Console",
-  description: "Enterprise AC POS & Inventory Management",
+  title: "CoolFlow POS Console",
+  description: "Enterprise-grade Air Conditioning POS Management System",
 };
 
 export default function RootLayout({

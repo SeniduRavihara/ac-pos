@@ -32,10 +32,10 @@ export default function DashboardPage() {
     setIsSeeding(true);
     try {
       await SeedService.seedAll();
-      alert("Mock data provisioned successfully!");
+      alert("Mock data initialized successfully!");
     } catch (e) {
       console.error(e);
-      alert("Provisioning failed. Check Console / Firebase Config.");
+      alert("Data generation failed. Check Console / Firebase Config.");
     } finally {
       setIsSeeding(false);
     }
@@ -50,8 +50,8 @@ export default function DashboardPage() {
             CoolFlow Dashboard
           </h1>
           <p className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
-            Region: <span className="font-bold text-foreground">lk-west-1</span> <ChevronRight className="w-3 h-3" /> 
-            Status: <span className="flex items-center gap-1 text-[#10b981] font-bold"><Activity className="w-3 h-3" /> Healthy</span>
+            Branch: <span className="font-bold text-foreground">Colombo Main</span> <ChevronRight className="w-3 h-3" /> 
+            Status: <span className="flex items-center gap-1 text-[#10b981] font-bold"><Activity className="w-3 h-3" /> Online</span>
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -98,7 +98,7 @@ export default function DashboardPage() {
            <div className="console-card overflow-hidden">
               <div className="px-4 py-3 bg-muted/30 border-b border-border flex items-center justify-between">
                  <h3 className="text-sm font-bold flex items-center gap-2">
-                   <Server className="w-4 h-4 text-[#ff9900]" /> Resource Infrastructure
+                   <Server className="w-4 h-4 text-[#ff9900]" /> Operational Status
                  </h3>
                  <span className="text-[10px] font-bold text-muted-foreground">Updated 2m ago</span>
               </div>
@@ -112,7 +112,7 @@ export default function DashboardPage() {
                           </div>
                           <div>
                              <p className="text-sm font-bold">In-Stock units</p>
-                             <p className="text-xs text-muted-foreground">All regions</p>
+                             <p className="text-xs text-muted-foreground">All branches</p>
                           </div>
                        </div>
                     </div>
@@ -147,9 +147,9 @@ export default function DashboardPage() {
            {/* Sales Feed */}
            <div className="console-card">
               <div className="px-4 py-3 bg-muted/30 border-b border-border flex items-center justify-between">
-                 <h3 className="text-sm font-bold flex items-center gap-2">
-                    <CloudLightning className="w-4 h-4 text-[#ff9900]" /> Recent Activity Events
-                 </h3>
+                  <h3 className="text-sm font-bold flex items-center gap-2">
+                     <CloudLightning className="w-4 h-4 text-[#ff9900]" /> Recent Activity
+                  </h3>
                  <button className="text-xs text-[#3b82f6] font-bold hover:underline">View All Events</button>
               </div>
               <div className="divide-y divide-border">
@@ -158,8 +158,8 @@ export default function DashboardPage() {
                     <div className="flex items-center gap-4">
                        <div className="w-2 h-2 rounded-full bg-[#10b981]" />
                        <div>
-                          <p className="text-xs font-bold">Transaction: Order completion for i-098234af</p>
-                          <p className="text-[11px] text-muted-foreground">User: Admin@lk-west-1 • Resource: Panasonic-Inv-1.5T</p>
+                          <p className="text-xs font-bold">Transaction: Order completion for ord-1092</p>
+                          <p className="text-[11px] text-muted-foreground">User: Admin@Colombo • Resource: Panasonic-Inv-1.5T</p>
                        </div>
                     </div>
                     <span className="text-[10px] font-bold text-muted-foreground">2026-04-03 23:45 UTC</span>
@@ -170,13 +170,12 @@ export default function DashboardPage() {
         </div>
 
         <div className="space-y-6">
-           {/* AWS Tips/News style */}
-           <div className="console-card bg-[#24292e] text-white border-none">
-              <div className="p-6 space-y-4">
-                 <h3 className="text-lg font-bold tracking-tight">Cloud Optimization Tips</h3>
-                 <p className="text-[11px] text-slate-400 leading-relaxed">
-                   Increase your AC service cycle efficiency by 24% by enabling predictive maintenance logging. Check the updated documentation for more details.
-                 </p>
+            <div className="console-card bg-[#24292e] text-white border-none">
+               <div className="p-6 space-y-4">
+                  <h3 className="text-lg font-bold tracking-tight">Business Efficiency Tips</h3>
+                  <p className="text-[11px] text-slate-400 leading-relaxed">
+                    Increase your AC service cycle efficiency by 24% by enabling predictive maintenance logging. Check the local branch documentation for more details.
+                  </p>
                  <button className="px-4 py-2 bg-[#ff9900] text-[#15191d] text-xs font-black rounded hover:bg-[#ec7211] transition-all flex items-center gap-2 uppercase tracking-tighter shadow-xl">
                    Learn More <ExternalLink className="w-3.5 h-3.5" />
                  </button>
@@ -186,13 +185,13 @@ export default function DashboardPage() {
            <div className="console-card p-6 border-l-4 border-l-[#ff9900]">
               <h4 className="text-xs font-black uppercase tracking-widest text-muted-foreground mb-4">Quick Links</h4>
               <ul className="space-y-3">
-                 {['AWS Billing Dashboard', 'Documentation', 'AC Support Center', 'IAM User Management'].map(link => (
+                  {['Sales & Billing Dashboard', 'Service Guides', 'AC Support Center', 'POS Access Control'].map(link => (
                     <li key={link}>
                        <a href="#" className="text-xs font-bold text-[#3b82f6] hover:underline flex items-center justify-between group">
                          {link} <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                        </a>
                     </li>
-                 ))}
+                  ))}
               </ul>
            </div>
         </div>
