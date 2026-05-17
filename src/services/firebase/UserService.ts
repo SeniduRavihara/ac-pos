@@ -35,7 +35,7 @@ export class UserService {
         email: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
-        roles: ["user"], // Default role
+        roles: ["salesman"], // Default role is now salesman
         createdAt: serverTimestamp(),
         lastLogin: serverTimestamp(),
       };
@@ -51,15 +51,14 @@ export class UserService {
   }
 
   /**
-   * Fetch a user's roles from Firestore
+   * Fetch full user data from Firestore
    */
-  static async getUserRoles(uid: string): Promise<string[]> {
+  static async getUserData(uid: string): Promise<AppUser | null> {
     const userRef = doc(db, this.COLLECTION, uid);
     const userDoc = await getDoc(userRef);
     if (userDoc.exists()) {
-      const data = userDoc.data() as AppUser;
-      return data.roles || [];
+      return userDoc.data() as AppUser;
     }
-    return [];
+    return null;
   }
 }
